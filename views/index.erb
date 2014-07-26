@@ -1,12 +1,27 @@
-<ul id="todo-list" class="unstyled">
-    <% @items.each do |item| %>
-      <li id="<%= item[:id] %>">
-        <span class="item"><%= item[:done] ? "<del>#{item[:content]}</del>" : item[:content] %></span>
-        <span class="pull-right">
-          <a href="#" class="btn done"><%= item[:done] ? "Not done" : "Done" %></a>
-          <a href="/delete/<%= item[:id] %>" class="btn btn-danger">Delete</a>
-        </span>
-      </li>
-    <% end %>
-</ul>
-<a href="/new" class="btn btn-primary">Add todo item</a>
+<h2><%= @result %></h2>
+<div class="card_images row">
+  <span class="card text-center col-3">
+    <img id="image1" class="flashcard col-4 img-responsive img-circle" src="http://www.allaboutbirds.org/guide/PHOTO/LARGE/bobo_kurtkirchmeier2.jpg"><br>
+    <a href="/<%= @answer %>/<%= @cards[0][:answer] %>">
+    <button type="button" class="btn btn-success"><%= @cards[0][:answer] %></button><br>
+    <p class="text-muted text-center hide"><%= @cards[0][:definition] %></p>
+  </span>
+  <span class="card text-center col-3">
+    <img id="image1" class="flashcard col-4 img-responsive img-circle" src="http://www.allaboutbirds.org/guide/PHOTO/LARGE/bobo_kurtkirchmeier2.jpg"><br>
+    <a href="/<%= @answer %>/<%= @cards[1][:answer] %>">
+    <button type="button" class="btn btn-success"><%= @cards[1][:answer] %></button><br>
+    <p class="text-muted text-center hide"><%= @cards[1][:definition] %></p>
+  </span>
+  <span class="card text-center col-3">
+    <img id="image1" class="flashcard col-4 img-responsive img-circle" src="http://www.allaboutbirds.org/guide/PHOTO/LARGE/bobo_kurtkirchmeier2.jpg"><br>
+    <a href="/<%= @answer %>/<%= @cards[2][:answer] %>">
+    <button type="button" class="btn btn-success"><%= @cards[2][:answer] %></button><br>
+    <p class="text-muted text-center hide"><%= @cards[2][:definition] %></p>
+  </span>
+  <span class="card text-center col-3">
+    <img id="image1" class="flashcard col-4 img-responsive img-circle" src="http://www.allaboutbirds.org/guide/PHOTO/LARGE/bobo_kurtkirchmeier2.jpg"><br>
+    <a href="/<%= @answer %>/<%= @cards[3][:answer] %>">
+    <button type="button" class="btn btn-success"><%= @cards[3][:answer] %></button><br>
+    <p class="text-muted text-center hide"><%= @cards[3][:definition] %></p>
+  </span>
+</div>

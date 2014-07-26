@@ -1,54 +1,31 @@
 require 'rubygems'
 require 'sinatra'
-require 'data_mapper'
 require 'json'
+require_relative 'model/flashcards.rb'
 
-DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/todo_list.db")
-class Item
-  include DataMapper::Resource
-  property :id, Serial
-  property :content, Text, :required => true
-  property :done, Boolean, :required => true, :default => false
-  property :created, DateTime
-end
-DataMapper.finalize.auto_upgrade!
+game = Game.new
+@result = ""
+####################################################
+# URL HANDLING
+####################################################
 
-get '/?' do
-  @items = Item.all(:order => :created.desc)
-  redirect '/new' if @items.empty?
+get '/' do
+  game.new_round
+  @cards = game.round_cards
+  @answer = game.answer
   erb :index
 end
 
-get '/new/?' do
-  @title = "Add todo item"
-  erb :new
-end
-
-post '/new/?' do
-  Item.create(:content => params[:content], :created => Time.now)
-  redirect '/'
-end
-
-post '/done/?' do
-  item = Item.first(:id => params[:id])
-  item.done = !item.done
-  item.save
-  content_type 'application/json'
-  value = item.done ? 'done' : 'not done'
-  { :id => params[:id], :status => value }.to_json
-end
-
-get '/delete/:id/?' do
-  @item = Item.first(:id => params[:id])
-  erb :delete
-end
-
-post '/delete/:id/?' do
-  if params.has_key?("ok")
-    item = Item.first(:id => params[:id])
-    item.destroy
-    redirect '/'
+get '/:answer/:choice' do
+  if params[:choice] == params[:answer]
+    @result = "Correct!"
   else
-    redirect '/'
+    @result = "The correct answer was #{params[:answer]}!"
   end
+  game.new_round
+  @cards = game.round_cards
+  @answer = game.answer
+  erb :index
 end
+
+

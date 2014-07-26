@@ -1,0 +1,38 @@
+.card {
+  display: block;
+
+}
+
+.flashcard {
+  width: 100px;
+  height: 100px;
+
+}
+
+#image1 {
+
+}
+#image2 {
+
+}
+#image3 {
+
+}
+#image4 {
+
+}
+
+.text-right
+{
+    text-align: right !important;
+}
+
+.text-center
+{
+    text-align: center !important;
+}
+
+.text-left
+{
+    text-align: left !important;
+}
